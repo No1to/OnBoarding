@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("com.google.dagger.hilt.android")
     kotlin("kapt")
 }
 
@@ -49,8 +50,8 @@ dependencies {
     kapt("androidx.room:room-compiler:$room_version")
 
     // Hilt
-    implementation("com.google.dagger:hilt-android:2.50")
-    kapt("com.google.dagger:hilt-compiler:2.50")
+    implementation("com.google.dagger:hilt-android:2.51.1")
+    kapt("com.google.dagger:hilt-compiler:2.51.1")
 
     // lottie
     val lottieVersion = "6.4.1"
@@ -71,4 +72,8 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     // default
+}
+
+kapt {
+    correctErrorTypes = true
 }
