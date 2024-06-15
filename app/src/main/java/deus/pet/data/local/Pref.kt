@@ -1,10 +1,9 @@
 package deus.pet.data.local
 
-import android.content.Context
+import android.content.SharedPreferences
+import javax.inject.Inject
 
-class SharedPreferences(context: Context) {
-
-    private val pref = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
+class Pref @Inject constructor (private val pref: SharedPreferences) {
 
     fun onShowed(): Boolean {
         return pref.getBoolean(SHOWED_KEY, false)
@@ -45,5 +44,4 @@ class SharedPreferences(context: Context) {
         const val PASSWORD = "password.key"
         const val USER_PICTURE_KEY = "user.picture"
     }
-
 }

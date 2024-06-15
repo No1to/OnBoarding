@@ -6,11 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import deus.pet.data.local.SharedPreferences
+import dagger.hilt.android.AndroidEntryPoint
+import deus.pet.data.local.Pref
 import deus.pet.onboarding.R
 import deus.pet.onboarding.databinding.FragmentOnBoardingBinding
 import deus.pet.onboarding.ui.onboarding.adapter.OnBoardingAdapter
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class OnBoardingFragment : Fragment() {
 
     // Создайте переменную для хранения binding
@@ -21,9 +24,8 @@ class OnBoardingFragment : Fragment() {
 
     private val adapter = OnBoardingAdapter(this::onClick)
 
-    private val pref: SharedPreferences by lazy {
-        SharedPreferences(requireContext())
-    }
+    @Inject
+    lateinit var pref: Pref
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,7 +41,7 @@ class OnBoardingFragment : Fragment() {
         binding.wormDotsIndicator.attachTo(binding.viewPager)
     }
 
-    private fun onClick(){
+    private fun onClick() {
         pref.onBoardingShow()
         findNavController().navigate(R.id.homeFragment)
     }

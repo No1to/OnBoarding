@@ -18,22 +18,15 @@ class OnBoardingAdapter(private val onClick: () -> Unit) :
         OnBoarding(R.raw.ob_animation_3, OB_TITLE_3, OB_DESCRIPTION_3)
     )
 
-  inner class OnBoardingViewHolder(private val binding: ItemOnBoardingBinding) :
+    inner class OnBoardingViewHolder(private val binding: ItemOnBoardingBinding) :
         ViewHolder(binding.root) {
         fun bind(boarding: OnBoarding) {
             binding.apply {
-                /*tvTitle.text = boarding.title
-                tvDescription.text = boarding.description
-                btnStart.isVisible = adapterPosition == list.lastIndex
-//              btnStart.isVisible = adapterPosition != list.lastIndex
-                btnStart.setOnClickListener { onClick() }*/
-
                 tvTitle.text = boarding.title
                 tvDescription.text = boarding.description
                 boarding.animation?.let { binding.animationView.setAnimation(it) }
-//              Glide.with(binding.imgV).load(image).into(binding.imgV)
-                btnStart.isVisible = adapterPosition == list.lastIndex
                 tvSkip.isVisible = adapterPosition != list.lastIndex
+                btnStart.isVisible = adapterPosition == list.lastIndex
 
                 tvSkip.setOnClickListener {
                     onClick()
@@ -41,7 +34,6 @@ class OnBoardingAdapter(private val onClick: () -> Unit) :
                 btnStart.setOnClickListener {
                     onClick()
                 }
-
             }
         }
     }
@@ -69,12 +61,10 @@ class OnBoardingAdapter(private val onClick: () -> Unit) :
             "Организуйте свою жизнь с Just Task: просто, эффективно, удобно!"
         private const val OB_DESCRIPTION_1 =
             "Приветствуем в Just Task! Организуйте свою жизнь с легкостью. Создавайте, отслеживайте и завершайте задачи, чтобы достигнуть максимальной продуктивности."
-
         private const val OB_TITLE_2 =
             "Just Task - ваш личный ассистент по управлению задачами. Начните прямо сейчас!"
         private const val OB_DESCRIPTION_2 =
             "Добро пожаловать в мир Just Task! Управляйте своим временем с умом: добавляйте задачи, устанавливайте приоритеты и следите за своими достижениями."
-
         private const val OB_TITLE_3 =
             "Максимизируйте свою продуктивность с Just Task: интуитивный органайзер для достижения ваших целей."
         private const val OB_DESCRIPTION_3 =
